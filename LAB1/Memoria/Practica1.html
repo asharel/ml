@@ -11786,7 +11786,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Libraries</span>
@@ -11815,7 +11815,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Descripcion-de-las-variables">Descripcion de las variables<a class="anchor-link" href="#Descripcion-de-las-variables">&#182;</a></h3><p>Tenemos una base de datos médica con los resultados de análisis sanguineos de varios pacientes y una clasificación de su estado de salud, 1 para los sanos y 2 para los enfermos. En primer lugar tenemos los datos del paciente, su edad y su género. A continuación se nos dan los resultados del total de bilirrubina y bilirrubina directa, la bilirrubina es un pigmento amarillo que se encuentra en la bilis (liquido generado por el hígado), la bilirrubina total es suma la bilirrubina directa o conjugada y la bilirrubina indirecta.<br> Despues se proporciona los valores de la fosfatasa alcalina, que es una enzima que se desplaza a través de el sistema sanguíneo, pero que se acumula más que nada en el hígado, la bilis, riñones y el sistema intestinal, es útil para detectar enfermedades óseas o hepáticas. <br><br>
+<h3 id="Descripcion-de-las-variables">Descripcion de las variables<a class="anchor-link" href="#Descripcion-de-las-variables">&#182;</a></h3><p>Tenemos una base de datos médica con los resultados de análisis sanguineos de varios pacientes y una clasificación de su estado de salud, 1 para los enfermos y 2 para los sanos. En primer lugar tenemos los datos del paciente, su edad y su género. A continuación se nos dan los resultados del total de bilirrubina y bilirrubina directa, la bilirrubina es un pigmento amarillo que se encuentra en la bilis (liquido generado por el hígado), la bilirrubina total es la suma de la bilirrubina directa o conjugada y la bilirrubina indirecta.<br> Despues se proporciona los valores de la fosfatasa alcalina, que es una enzima que se desplaza a través de el sistema sanguíneo, pero que se acumula más que nada en el hígado, la bilis, riñones y el sistema intestinal, es útil para detectar enfermedades óseas o hepáticas. <br><br>
 Después están las transaminasas, la alaninoamino transferasa (ALT o GPT) y la aspartato aminotransferasa (AST o GOT), que son enzimas que se encuentran en el interior de las células de órganos como el hígado, el corazón, los riñones o los músculos, y desempeñan una importante función en el metabolismo. Cuando un análisis de sangre detecta niveles elevados de estas moléculas puede indicar que existe una lesión de las células hepáticas.<br><br></p>
 <p>Las últimas tres variables son las proteinas totales, la albumina y el ratio de albumina y globulina. El examen de proteína total mide la cantidad total de dos clases de proteínas encontradas en la porción líquida de la sangre: albúmina y globulina.<br>
 La albúmina es una proteína plasmática cuya función más importante es el mantenimiento de la presión oncótica, es decir  ayuda a impedir que se escape líquido fuera de los vasos sanguíneos,  y la capacidad de transporte de hormonas, medicamentos,etc.<br>
@@ -11827,7 +11827,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Path para linux</span>
@@ -11849,7 +11849,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -12762,7 +12762,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Header</span>
@@ -12782,7 +12782,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -12811,7 +12811,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Cambiando-valores-nominales">Cambiando valores nominales<a class="anchor-link" href="#Cambiando-valores-nominales">&#182;</a></h4><p>Como se puede observar desde un primer momento, existe una variable denominada <em>Gender</em> relacionada con el sexo que tiene un formato String. Para facilitar los cálculos posteriores, vamos a reemplazarla cambiando:</p>
+<h4 id="Cambiando-valores-nominales">Cambiando valores nominales<a class="anchor-link" href="#Cambiando-valores-nominales">&#182;</a></h4><p>Como se puede observar desde un primer momento, existe una variable nominal denominada <em>Gender</em> relacionada con el sexo. Para facilitar los cálculos posteriores, vamos a reemplazarla cambiando:</p>
 <ul>
 <li><strong>Male:</strong> 0</li>
 <li><strong>Female:</strong> 1</li>
@@ -12822,7 +12822,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Male&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
@@ -12840,7 +12840,7 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13754,14 +13754,17 @@ Por los componentes analizados podemos concluir que es un perfil hepático para 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span> <span class="c1">#Descripción de los datos</span>
 
 <span class="c1">#### Obtenemos contéo de sexo</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Pacientes masculinos y femeninos:&#39;</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Pacientes masculinos (0) y femeninos (1):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="c1">#### Obtenemos contéo de la clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Pacientes enfermos (1) y sanos (2):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;Dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -13818,24 +13821,17 @@ min                      0.300000    1.000000
 75%                      1.100000    2.000000  
 max                      2.800000    2.000000  
 
-Pacientes masculinos y femeninos:
+Pacientes masculinos (0) y femeninos (1):
+0    441
+1    142
+dtype: int64
+
+Pacientes enfermos (1) y sanos (2):
+1    416
+2    167
+dtype: int64
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0    441
-1    142
-dtype: int64</pre>
-</div>
-
 </div>
 
 </div>
@@ -13859,6 +13855,11 @@ dtype: int64</pre>
 <li>Referente al sexo de los pacientes:<ul>
 <li>Tenemos un total de 441 hombres</li>
 <li>Tenemos un total de 142 mujeres</li>
+</ul>
+</li>
+<li>De estos pacientes:<ul>
+<li>416 están enfermos</li>
+<li>167 están sanos</li>
 </ul>
 </li>
 </ul>
@@ -16488,7 +16489,7 @@ gAT9H3jBwkyl+eAFAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Como vemos en los boxplot hay varios $\textit{outliers}$ en las variables, en concreto algunos muy marcados en la $\textit{total bilirubin}$, $\textit{direct bilirubin}$, $\textit{alkaline phosphotase}$,   $\textit{alamine aminotransferase}$, $\textit{aspartate aminotransferase}$ y $\textit{albumin and globulin ratio}$. Pero al tratarse de <strong>datos médicos</strong> para detectar si alguien está enfermo o no, esos $\textit{outliers}$ pueden ser útiles para el estudio, por lo que hemos decidido conservarlos.</p>
+<p>Como vemos en los boxplot hay varios <em>outliers</em> en las variables, en concreto algunos muy marcados en la <em>total bilirubin</em>, <em>direct bilirubin</em>, <em>alkaline phosphotase</em>,   <em>alamine aminotransferase</em>, <em>aspartate aminotransferase</em> y <em>albumin and globulin ratio</em>. Pero al tratarse de <strong>datos médicos</strong> para detectar si alguien está enfermo o no, esos <em>outliers</em> pueden ser útiles para el estudio, por lo que hemos decidido conservarlos.</p>
 
 </div>
 </div>
@@ -16672,7 +16673,7 @@ dtype: bool</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Solo hay una variable con $\textit{missing values}$: $\textit{Albumin and globulin ratio}$, y solo en cuatro filas. Al tener una base de datos grande y pocos $\textit{missing values}$ hemos decido eliminarlos.</p>
+<p>Solo hay una variable con <em>missing values</em>: <em>Albumin and globulin ratio</em>, y solo en cuatro filas. Al tener una base de datos grande y pocos <em>missing values</em> hemos decido eliminarlos.</p>
 
 </div>
 </div>
@@ -17612,7 +17613,7 @@ dtype: bool</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Correlaci&#243;n-entre-las-variables">Correlaci&#243;n entre las variables<a class="anchor-link" href="#Correlaci&#243;n-entre-las-variables">&#182;</a></h3><p>El primer estudio que vamos a hacer con los datos va a ser evaluar como de relacionados están unos con otros. Esto nos permitirá evaluar cuales de los atributos pueden ser determinantes para el problema que plantea estos datos.</p>
-<p>Para ello, generaremos la matriz de correlación gracias a la función <em>corr()</em> del objeto dataset de <strong>panda</strong>:</p>
+<p>Para ello, generaremos la matriz de correlación lineal gracias a la función <em>corr()</em> del objeto dataset de <strong>panda</strong>:</p>
 
 </div>
 </div>
@@ -25736,6 +25737,8 @@ ORwOh8PhcDgcDofD4XA4Ro1TLjkcDofD4XA4HA6Hw+FwOEaNUy45HA6Hw+FwOBwOh8PhcDhGzf8H
 <li><p>Hay alta correlación entre albumina y el total proteinas ya que el total proteinas es la suma de la albumina y la gobulina.</p>
 </li>
 <li><p>Hay alta correlación entre la albumina y el ratio de albumina y gobulina</p>
+</li>
+<li><p>Hay alta correlación entre las dos  transaminasas, la alaninoamino transferasa y la aspartato aminotransferasa</p>
 </li>
 <li><p>Aun a pesar de los datos previos, no hay una gran correlación entre las variables y la clase. La correlación más alta con la clase es la que hay con la bilirrubina directa. Con lo cual <strong>tampoco pareciera que tuviéramos falsos predictores</strong>.</p>
 </li>
