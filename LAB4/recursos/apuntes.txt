@@ -1,0 +1,3 @@
+kernel gaussiano k(x,y)=e^||x-y||^2/2*gamma^2
+
+||x-y||^2=||x||^2+||y||^2-2xy
