@@ -14,17 +14,8 @@ import numpy as np
 #   Array k de dimensiones n x m, con kij = k(x[i], y[j])
 #---------------------------------------------------------------------------
 def linear_kernel(x, y, b=1):
-    K = None
-
-    #-----------------------------------------------------------------------
-    # TO-DO:
-    # Calcula el kernel K, que debe ser un array n x m
-    #-----------------------------------------------------------------------
-    pass
-    K=np.dot(x, y.T)+b
-    #-----------------------------------------------------------------------
-    # Fin TO-DO.
-    #-----------------------------------------------------------------------
+    
+    K=np.dot(x, y.T) + b
     
     return K
 
@@ -40,17 +31,8 @@ def linear_kernel(x, y, b=1):
 #   Array K de dimensiones n x m, con Kij = k(x[i], y[j])
 #---------------------------------------------------------------------------
 def poly_kernel(x, y, deg=1, b=1):
-    K = None
-
-    #-----------------------------------------------------------------------
-    # TO-DO:
-    # Calcula el kernel K, que debe ser un array n x m
-    #-----------------------------------------------------------------------
-    pass
+    
     K=np.power(np.dot(x, y.T)+b, deg)
-    #-----------------------------------------------------------------------
-    # Fin TO-DO.
-    #-----------------------------------------------------------------------
     
     return K
 
@@ -66,22 +48,10 @@ def poly_kernel(x, y, deg=1, b=1):
 #   Array K de dimensiones n x m, con Kij = k(x[i], y[j])
 #---------------------------------------------------------------------------
 def rbf_kernel(x, y, sigma=1):
-    K = None
-
-    #-----------------------------------------------------------------------
-    # TO-DO:
-    # Calcula el kernel K, que debe ser un array n x m
-    # Nota: el parametro sigma usado en esta funcion y el parametro gamma
-    # que usan las funciones de sklearn se relacionan segun la expresion
-    # gamma = 1 / 2*sigma^2
-    #-----------------------------------------------------------------------
-    pass
-    numerador=np.linalg.norm(x, axis=1, keepdims=True)**2+(np.linalg.norm(y,axis=1, keepdims=True).T)**2-2*np.dot(x, y.T)
+    
+    numerador=np.power(np.linalg.norm(x, axis=x.ndim-1, keepdims=True),2) + np.power((np.linalg.norm(y,axis=y.ndim-1, keepdims=True).T),2) - 2 * np.dot(x, y.T)
     denominador=2*np.power(sigma,2)
     K=np.exp((-numerador)/denominador)
-    #-----------------------------------------------------------------------
-    # Fin TO-DO.
-    #-----------------------------------------------------------------------
     
     return K
 
@@ -166,18 +136,10 @@ class SVM:
     def evaluate_model(self, z):
         n, d = z.shape
         f = np.zeros(n)
+
+        # f(z) = Sum1->n (Alphai * Yi * K(Zi,z) + b)
+        f = np.sum(self.alpha * self.y * self.evaluate_kernel(self.X, z), axis=1) + self.b
         
-        #-------------------------------------------------------------------
-        # TO-DO:
-        # Calcula la funcion de clasificacion f(z), debe ser un array de
-        # dimension (n, 1)
-        #-------------------------------------------------------------------
-        pass
-    
-        #-------------------------------------------------------------------
-        # Fin TO-DO.
-        #-------------------------------------------------------------------
-    
         return f
 
     #-----------------------------------------------------------------------
@@ -205,18 +167,8 @@ class SVM:
         C = self.C
         ix = np.ones(n, dtype=bool)
         
-        #-------------------------------------------------------------------
-        # TO-DO:
-        # Calcula el array ix, de dimension (n, 1), tal que ix[i] = True si
-        # alpha[i] no satisface las restricciones.
-        # NOTA: deberia ser facil, puede hacerse con una sola linea.
-        #-------------------------------------------------------------------
-        pass
-    
-        #-------------------------------------------------------------------
-        # Fin TO-DO.
-        #-------------------------------------------------------------------
-
+        ix = np.asarray([(ye[i] < - tol and a[i] < C) or (ye[i] > tol and a[i] > 0) for i in range(n)])
+        
         # Si todas las alphas satisfacen las restricciones, devuelvo i = j = -1:
         if np.sum(ix) == 0:
             return -1, -1
@@ -225,7 +177,7 @@ class SVM:
         i = (ix*range(n))[ix][0]
         
         # Cojo como j otro al azar distinto de i:
-        p = np.random.permutation(n)[:2]
+        p = np.random.permutation(n)[:2]        
         j = p[0] if p[0] != i else p[1]
         
         return i, j
@@ -243,15 +195,10 @@ class SVM:
     def calculate_eta(self, z):
         eta = 0
         
-        #-------------------------------------------------------------------
-        # TO-DO:
-        # Calcula el el valor de eta.
-        #-------------------------------------------------------------------
-        pass
-    
-        #-------------------------------------------------------------------
-        # Fin TO-DO.
-        #-------------------------------------------------------------------
+        x1 = z[0]
+        x2 = z[1]
+                
+        eta = self.evaluate_kernel(x1,x1) + self.evaluate_kernel(x2,x2) - (2 * self.evaluate_kernel(x1,x2))
 
         return eta
 
@@ -271,22 +218,35 @@ class SVM:
     def update_alphas(self, i, j, eta, e):
         ai_old = self.alpha[i]
         aj_old = self.alpha[j]
-
+        E1 = e[i]
+        E2 = e[j]
+        y1 = self.y[i]
+        y2 = self.y[j]
+        
         #-------------------------------------------------------------------
-        # TO-DO:
-        # Actualiza los valores de las dos alphas siguiendo estos pasos:
         # 1. Calcula los valores minimo y maximo (L y H) que puede tomar
         #    alpha_j
+        L = H = 0
+        if y1 == y2:
+            L = max(0, aj_old + ai_old - self.C)
+            H = min(self.C, aj_old + ai_old)
+        else:
+            L = max(0, aj_old - ai_old)
+            H = min(self.C, self.C + aj_old - ai_old)
+        
         # 2. Calcula el nuevo valor de alpha_j segun la ecuacion 16 del
         #    articulo de Platt, 1998
+        aj = aj_old + np.divide(y2 * (E1-E2), eta)
+        
         # 3. Haz el clip de alpha_j para que este en el rango [L, H]
+        aj = np.clip(aj,L,H)
+        
         # 4. Calcula el nuevo valor de alpha_i con la ecuacion 18
-        #-------------------------------------------------------------------
-        pass
-    
-        #-------------------------------------------------------------------
-        # Fin TO-DO.
-        #-------------------------------------------------------------------
+        ai = ai_old + y1 * y2 * (aj_old - aj)
+        #-------------------------------------------------------------------    
+        
+        self.alpha[i] = ai
+        self.alpha[j] = aj
 
         self.is_sv[i] = self.alpha[i] > 0
         self.is_sv[j] = self.alpha[j] > 0
@@ -307,17 +267,29 @@ class SVM:
     #   Nada.
     #-----------------------------------------------------------------------
     def update_b(self, i, j, ai_old, aj_old, e):
-        #-------------------------------------------------------------------
-        # TO-DO:
-        # Actualiza el bias de acuerdo a las ecuaciones 20 y 21 del articulo
-        # de Platt, 1998
-        #-------------------------------------------------------------------
-        pass
-    
-        #-------------------------------------------------------------------
-        # Fin TO-DO.
-        #-------------------------------------------------------------------
-            
+        E1 = e[i]
+        E2 = e[j]
+        y1 = self.y[i]
+        y2 = self.y[j]
+        ai = self.alpha[i]
+        aj = self.alpha[j]
+        X1 = self.X[i]
+        X2 = self.X[j]
+        
+        p1 = y1 * (ai - ai_old) 
+        p2 = y2 * (aj - aj_old)
+        
+        b1 = self.b - E1 - p1 * self.evaluate_kernel(X1,X1) - p2 * self.evaluate_kernel(X1,X2)
+        b2 = self.b - E2 - p1 * self.evaluate_kernel(X1,X2) + p2 * self.evaluate_kernel(X2,X2)
+        
+        if 0 < ai < self.C:
+            self.b = b1 
+        elif 0 < aj < self.C:
+            self.b = b1
+        else:
+            self.b = (b1 + b2)/2
+        
+        
     #-----------------------------------------------------------------------
     # simple_smo(self, X, y, tol=0.00001, maxiter=10, verb=False)
     #   Ejecuta el algoritmo SMO (version simplificada) sobre los datos
@@ -342,13 +314,14 @@ class SVM:
         
         # Iteramos hasta maxiter:
         while num_iters < maxiter:
+            num_iters += 1
             # Calculamos los errores:
             f = self.evaluate_model(X)
             e = f - y
-            
+                        
             # Seleccionamos pareja de alphas para optimizar:
             i, j = self.select_alphas(e, tol)
-
+            
             # Si todas las alphas satisfacen las restricciones, acabamos:
             if i == -1:
                 break
@@ -357,7 +330,7 @@ class SVM:
             eta = self.calculate_eta(X[[i,j],:])
 
             # Si eta es negativa o cero ignoramos esta pareja de alphas:
-            if eta <= 0: 
+            if eta <= 0:
                 continue
            
             # Actualizamos las alphas:
@@ -374,6 +347,6 @@ class SVM:
             # Incrementamos el contador de iteraciones e imprimimos:
             if verb and num_iters%print_every == 0:
                 print ("Iteration (%d / %d), num. sv: %d" % (num_iters, maxiter, self.num_sv))
-            num_iters += 1
+            
             
 
